@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Monster RPG Menu</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="menu-bg">
+
+<div class="menu-container">
+
+    <h1>🏰 Math Monster RPG</h1>
+
+    <div class="menu-buttons">
+
+        <!-- Старт гри -->
+        <a href="{{ url_for('map') }}" class="menu-button">
+            🗺 Start Game
+        </a>
+
+        <!-- Логін -->
+        <a href="/login" class="menu-button">
+            🔐 Login
+        </a>
+
+        <!-- Реєстрація -->
+        <a href="/register" class="menu-button">
+            📝 Register
+        </a>
+
+        <!-- Налаштування -->
+        <a href="#" class="menu-button disabled">
+            ⚙ Settings (soon)
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

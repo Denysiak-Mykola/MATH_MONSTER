@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Monster Boss RPG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body id="gameBody">
+
+<h1>⚔️ Math Monster Battle RPG</h1>
+
+<div id="level">Level: {{ level }}</div>
+<div id="wave">Wave: 1</div>
+<div id="gold">Gold: 0</div>
+<div id="record">Best level: 1</div>
+
+<div class="container">
+
+    <div class="left">
+        <h2 id="question"></h2>
+
+        <input id="answer" autocomplete="off">
+        <br>
+
+        <button onclick="submitAnswer()">Attack</button>
+        <button onclick="specialAttack()">⚡ Special</button>
+
+        <div class="timer">
+            Time: <span id="time">300</span>
+        </div>
+
+        <div class="bar">
+            <div class="playerHP" id="playerHP"></div>
+        </div>
+
+        <div class="bar">
+            <div class="hp" id="comboBar" style="background:cyan;width:0%"></div>
+        </div>
+
+        <h3>Shop / Upgrade</h3>
+        <button onclick="buyDamage()">Damage +5 (50g)</button>
+        <button onclick="buyHP()">HP +20 (50g)</button>
+        <button onclick="buyMana()">Mana +20 (50g)</button>
+
+        <div>
+            <p>Damage: <span id="playerDamage">25</span></p>
+            <p>Max HP: <span id="playerMaxHP">120</span></p>
+            <p>Mana: <span id="playerMana">100</span></p>
+        </div>
+    </div>
+
+    <div class="right">
+        <div style="position:relative;display:inline-block">
+            <img id="bossImg" class="boss">
+            <div id="flash" class="flash"></div>
+            <div id="damageText" class="damage"></div>
+        </div>
+
+        <div class="bar">
+            <div class="hp" id="bossHP"></div>
+        </div>
+    </div>
+
+</div>
+
+<audio id="music" src="/static/sounds/music.mp3" loop autoplay></audio>
+
+<!-- 🔥 ВАЖЛИВО -->
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/game.js') }}"></script>
+
+</body>
+</html>

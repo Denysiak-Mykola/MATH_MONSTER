@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Monster Map</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="map-bg">
+
+<h1>🌍 Map of Adventures</h1>
+
+<div class="map-levels">
+
+    <div class="level-card" onclick="goToLevel(1)">
+        <h2>🌲 Forest</h2>
+    </div>
+
+    <div class="level-card" onclick="goToLevel(2)">
+        <h2>🕳 Dungeon</h2>
+    </div>
+
+    <div class="level-card" onclick="goToLevel(3)">
+        <h2>🏰 Castle</h2>
+    </div>
+
+    <div class="level-card" onclick="goToLevel(4)">
+        <h2>🔥 Hell</h2>
+    </div>
+
+    <div class="level-card" onclick="goToLevel(5)">
+        <h2>🐉 Dragon's Cavern</h2>
+    </div>
+
+</div>
+
+<script>
+function goToLevel(level) {
+    window.location.href = "{{ url_for('game') }}" + "?level=" + level;
+}
+</script>
+
+</body>
+</html>
