@@ -1,12 +1,10 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
 from flask_socketio import SocketIO
 import sqlite3
-import os
 
-# ---------- APP ----------
 app = Flask(__name__)
 app.secret_key = "secret123"
-socketio = SocketIO(app, async_mode="eventlet")  # Важливо вказати eventlet для Render
+socketio = SocketIO(app)
 
 # ---------- DB ----------
 def init_db():
@@ -46,14 +44,12 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-
         conn = sqlite3.connect("game.db")
         user = conn.execute(
             "SELECT * FROM users WHERE username=? AND password=?",
             (username, password)
         ).fetchone()
         conn.close()
-
         if user:
             session["user_id"] = user[0]
             return redirect("/")
@@ -89,9 +85,8 @@ def save():
 @socketio.on("attack")
 def handle_attack(data):
     print("Damage:", data["damage"])
-    socketio.emit("enemy_hit", data)  # для мультиплеєра
+    socketio.emit("enemy_hit", data)
 
 # ---------- RUN ----------
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    socketio.run(app, host="0.0.0.0", port=port)
+    socketio.run(app, host="0.0.0.0", port=10000)
